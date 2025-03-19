@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { MotionClientInit } from "@/components/motion-client-init";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { PostHogProvider } from "@/providers/posthog-provider";
 
 // import { ThemeProvider } from "@/components/theme-provider";
 
@@ -33,9 +34,12 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange> */}
-        {children}
-        {/* </ThemeProvider> */}
+        <PostHogProvider>
+          {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange> */}
+          {children}
+          {/* </ThemeProvider> */}
+        </PostHogProvider>
+
         <MotionClientInit />
 
         <SpeedInsights />
