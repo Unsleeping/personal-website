@@ -303,7 +303,7 @@ export function BlogSection() {
         <div className="mt-12 text-center">
           <Button
             asChild
-            className="bg-dark-purple-gradient hover:opacity-90 transition-opacity"
+            className="bg-dark-purple-gradient hover:opacity-90 transition-opacity text-white"
           >
             <Link
               href="https://x.com/endlesslysorrow"

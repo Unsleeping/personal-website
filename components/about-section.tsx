@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, UseInViewOptions } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
@@ -58,9 +58,11 @@ const AnimatedCard = ({
   );
 };
 
+const useInViewOptions: UseInViewOptions = { once: true, margin: "-100px" };
+
 export function AboutSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, useInViewOptions);
 
   return (
     <section id="about" className="py-20 bg-muted/50 relative overflow-hidden">

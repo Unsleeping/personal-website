@@ -1,14 +1,18 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
-import { ModeToggle } from "@/components/mode-toggle";
+// import { ModeToggle } from "@/components/mode-toggle";
 
 const navItems = [
   { href: "#about", label: "About" },
@@ -69,7 +73,7 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <Button
             asChild
             className="bg-dark-purple-gradient hover:opacity-90 transition-opacity"
@@ -78,7 +82,7 @@ export function SiteHeader() {
           </Button>
         </div>
         <div className="flex md:hidden items-center gap-4">
-          <ModeToggle />
+          {/* <ModeToggle /> */}
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -96,22 +100,23 @@ export function SiteHeader() {
             >
               <nav className="flex flex-col gap-4 mt-8">
                 {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "text-sm font-medium transition-colors hover:text-purple-500 p-2 rounded-md hover:bg-purple-800/10",
-                      pathname === item.href
-                        ? "text-foreground"
-                        : "text-muted-foreground"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
+                  <SheetClose key={item.href} asChild>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "text-sm font-medium transition-colors hover:text-purple-500 p-2 rounded-md hover:bg-purple-800/10",
+                        pathname === item.href
+                          ? "text-foreground"
+                          : "text-muted-foreground"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  </SheetClose>
                 ))}
                 <Button
                   asChild
-                  className="mt-4 bg-dark-purple-gradient hover:opacity-90 transition-opacity"
+                  className="mt-4 bg-dark-purple-gradient hover:opacity-90 transition-opacity text-white"
                 >
                   <Link href="#contact">Get in touch</Link>
                 </Button>

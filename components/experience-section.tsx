@@ -140,7 +140,7 @@ export function ExperienceSection() {
                 } flex-col items-center`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-1/2 -translate-x-1/2 z-10 w-12 h-12 rounded-full border-4 border-background flex items-center justify-center bg-dark-purple-gradient">
+                <div className="absolute left-1/2 -translate-x-1/2 z-10 w-12 h-12 rounded-full border-4 border-background flex items-center justify-center bg-dark-purple-gradient max-md:-top-8">
                   {experience.isEducation ? (
                     <GraduationCap className="h-5 w-5 text-white" />
                   ) : (
