@@ -5,6 +5,7 @@ import { Mona_Sans as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { MotionClientInit } from "@/components/motion-client-init";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 // import { ThemeProvider } from "@/components/theme-provider";
 
@@ -36,7 +37,9 @@ export default function RootLayout({
         {children}
         {/* </ThemeProvider> */}
         <MotionClientInit />
+
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
