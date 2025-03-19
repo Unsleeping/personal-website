@@ -76,7 +76,7 @@ export function SiteHeader() {
           {/* <ModeToggle /> */}
           <Button
             asChild
-            className="bg-dark-purple-gradient hover:opacity-90 transition-opacity"
+            className="bg-dark-purple-gradient hover:opacity-90 transition-opacity text-white"
           >
             <Link href="#contact">Get in touch</Link>
           </Button>
