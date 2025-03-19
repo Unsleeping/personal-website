@@ -325,7 +325,7 @@ export function ProjectsSection() {
             Featured Projects
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A selection of projects I've worked on throughout my career
+            A selection of projects I&apos;ve worked on throughout my career
           </p>
         </div>
 

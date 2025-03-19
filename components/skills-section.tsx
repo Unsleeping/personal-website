@@ -187,8 +187,8 @@ export function SkillsSection() {
             Skills & Technologies
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A comprehensive set of technical skills I've developed throughout my
-            career
+            A comprehensive set of technical skills I&apos;ve developed
+            throughout my career
           </p>
         </div>
 

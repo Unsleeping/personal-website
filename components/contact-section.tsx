@@ -26,7 +26,7 @@ export function ContactSection() {
       <div className="container relative">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <div className="inline-block rounded-full bg-purple-500/10 px-3 py-1 text-sm text-purple-500 backdrop-blur-md border border-purple-500/20 mb-4">
-            Let's Connect
+            Let&apos;s Connect
           </div>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Get in Touch

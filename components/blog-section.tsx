@@ -262,7 +262,7 @@ export function BlogSection() {
                     ))}
                   </div>
                   <p className="text-sm text-muted-foreground italic">
-                    "{post.excerpt}"
+                    &quot;{post.excerpt}&quot;
                   </p>
 
                   {post.highlights && (
