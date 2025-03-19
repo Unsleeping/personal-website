@@ -1,52 +1,54 @@
-"use client"
+"use client";
 
-import { useRef, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+
+const createStar = (container: HTMLDivElement) => {
+  const star = document.createElement("div");
+  star.className = "absolute rounded-full bg-white";
+
+  // Random size
+  const size = Math.random() * 2 + 1;
+  star.style.width = `${size}px`;
+  star.style.height = `${size}px`;
+
+  // Random position
+  star.style.left = `${Math.random() * 100}%`;
+  star.style.top = `${Math.random() * 100}%`;
+
+  // Random opacity
+  star.style.opacity = `${Math.random() * 0.8 + 0.2}`;
+
+  // Add to container
+  container.appendChild(star);
+
+  // Remove after animation
+  setTimeout(() => {
+    star.remove();
+  }, 5000);
+};
 
 export function AnimatedBackground() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!containerRef.current) return;
 
-    const container = containerRef.current
-    const createStar = () => {
-      const star = document.createElement("div")
-      star.className = "absolute rounded-full bg-white"
-
-      // Random size
-      const size = Math.random() * 2 + 1
-      star.style.width = `${size}px`
-      star.style.height = `${size}px`
-
-      // Random position
-      star.style.left = `${Math.random() * 100}%`
-      star.style.top = `${Math.random() * 100}%`
-
-      // Random opacity
-      star.style.opacity = `${Math.random() * 0.8 + 0.2}`
-
-      // Add to container
-      container.appendChild(star)
-
-      // Remove after animation
-      setTimeout(() => {
-        star.remove()
-      }, 5000)
-    }
+    const container = containerRef.current;
+    createStar(container);
 
     // Create initial stars
-    for (let i = 0; i < 50; i++) {
-      createStar()
-    }
+    Array.from({ length: 50 }).forEach(() => {
+      createStar(container);
+    });
 
     // Create new stars periodically
     const interval = setInterval(() => {
-      createStar()
-    }, 200)
+      createStar(container);
+    }, 200);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -81,6 +83,5 @@ export function AnimatedBackground() {
         }}
       />
     </div>
-  )
+  );
 }
-

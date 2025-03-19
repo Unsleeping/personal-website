@@ -3,6 +3,8 @@ import "@/app/globals.css";
 import type { Metadata } from "next";
 import { Mona_Sans as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { MotionClientInit } from "@/components/motion-client-init";
+
 // import { ThemeProvider } from "@/components/theme-provider";
 
 const fontSans = FontSans({
@@ -32,6 +34,7 @@ export default function RootLayout({
         {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange> */}
         {children}
         {/* </ThemeProvider> */}
+        <MotionClientInit />
       </body>
     </html>
   );
