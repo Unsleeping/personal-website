@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, UseInViewOptions } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
@@ -185,24 +185,26 @@ const blogPosts = [
   // },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const useInViewOptions: UseInViewOptions = { once: true, margin: "-100px" };
+
 export function BlogSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const isInView = useInView(ref, useInViewOptions);
 
   return (
     <section id="blog" className="py-20 relative overflow-hidden">

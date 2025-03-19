@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, UseInViewOptions } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,11 @@ import {
 import { Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 
+const useInViewOptions: UseInViewOptions = { once: true, margin: "-100px" };
+
 export function ContactSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, useInViewOptions);
 
   return (
     <section id="contact" className="py-20 relative overflow-hidden">

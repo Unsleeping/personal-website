@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { motion } from "framer-motion";
+import { motion, UseInViewOptions } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,9 +43,11 @@ const StatCard = ({ title, value, icon, delay }: StatCardProps) => {
   );
 };
 
+const useInViewOptions: UseInViewOptions = { once: true, margin: "-100px" };
+
 export function GitHubStats() {
   const ref = useRef(null);
-  useInView(ref, { once: true, margin: "-100px" });
+  useInView(ref, useInViewOptions);
 
   return (
     <div ref={ref} className="py-12">
