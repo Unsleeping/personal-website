@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Code2,
   Layout,
@@ -17,14 +17,14 @@ import {
   Zap,
   TestTube,
   SplitSquareVertical,
-} from "lucide-react"
-import { RotatingCube } from "./rotating-cube"
+} from "lucide-react";
+import { RotatingCube } from "./rotating-cube";
 
 const skills = [
   {
     category: "Programming Languages",
     icon: <Code2 className="h-6 w-6" />,
-    items: ["TypeScript", "JavaScript", "HTML", "CSS", "SCSS", "Python", "Go"],
+    items: ["TypeScript / JavaScript", "Python", "Go"],
   },
   {
     category: "Frontend Frameworks",
@@ -51,32 +51,76 @@ const skills = [
   {
     category: "UI Libraries",
     icon: <Palette className="h-6 w-6" />,
-    items: ["TailwindCSS", "Material UI", "ShadcnUI", "Styled Components", "Sass"],
+    items: [
+      "TailwindCSS",
+      "Material UI",
+      "Shadcn UI",
+      "Styled Components",
+      "Sass",
+    ],
   },
   {
     category: "Data Management",
     icon: <BarChart3 className="h-6 w-6" />,
-    items: ["TanStack Query", "TanStack Table", "TanStack Router", "React Hook Form", "Zod"],
+    items: [
+      "TanStack Query",
+      "TanStack Table",
+      "TanStack Router",
+      "React Hook Form",
+      "Zod",
+    ],
   },
   {
     category: "Backend & Databases",
     icon: <Server className="h-6 w-6" />,
-    items: ["Node.js", "NestJS", "MongoDB", "PostgreSQL", "TypeORM", "Prisma", "Redis"],
+    items: [
+      "Node.js",
+      "NestJS",
+      "MongoDB",
+      "PostgreSQL",
+      "TypeORM",
+      "Prisma",
+      "Redis",
+    ],
   },
   {
     category: "Server-Side Rendering",
     icon: <Zap className="h-6 w-6" />,
-    items: ["SSR", "SSG", "ISR", "RSC", "PPR", "RSC+RCC Composition", "Edge Runtime", "Middleware"],
+    items: [
+      "SSR",
+      "SSG",
+      "ISR",
+      "RSC",
+      "PPR",
+      "RSC+RCC Composition",
+      "Edge Runtime",
+      "Middleware",
+    ],
   },
   {
     category: "Performance Optimization",
     icon: <SplitSquareVertical className="h-6 w-6" />,
-    items: ["Lazy Loading", "Code Splitting", "Bundle Analysis", "Tree Shaking", "Memoization", "Virtualization"],
+    items: [
+      "Lazy Loading",
+      "Code Splitting",
+      "Bundle Analysis",
+      "Tree Shaking",
+      "Memoization",
+      "Virtualization",
+    ],
   },
   {
     category: "Testing & UI Kits",
     icon: <TestTube className="h-6 w-6" />,
-    items: ["Vitest", "Playwright", "Jest", "React Testing Library", "Storybook", "E2E Testing", "Unit Testing"],
+    items: [
+      "Vitest",
+      "Playwright",
+      "Jest",
+      "React Testing Library",
+      "Storybook",
+      "E2E Testing",
+      "Unit Testing",
+    ],
   },
   {
     category: "DevOps & Hosting",
@@ -108,11 +152,11 @@ const skills = [
       "Serverless Optimization",
     ],
   },
-]
+];
 
 export function SkillsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -122,12 +166,12 @@ export function SkillsSection() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <section id="skills" className="py-20 relative overflow-hidden">
@@ -139,14 +183,26 @@ export function SkillsSection() {
           <div className="inline-block rounded-full bg-purple-800/10 px-3 py-1 text-sm text-purple-500 backdrop-blur-md border border-purple-800/20 mb-4">
             My Expertise
           </div>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Skills & Technologies</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Skills & Technologies
+          </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            A comprehensive set of technical skills I've developed throughout my career
+            A comprehensive set of technical skills I've developed throughout my
+            career
           </p>
         </div>
 
         <div className="mb-16">
-          <RotatingCube skills={["Next.js", "React", "TypeScript", "TanStack", "TailwindCSS", "Performance"]} />
+          <RotatingCube
+            skills={[
+              "Next.js",
+              "React",
+              "TypeScript",
+              "TanStack",
+              "TailwindCSS",
+              "Performance",
+            ]}
+          />
         </div>
 
         <motion.div
@@ -161,7 +217,9 @@ export function SkillsSection() {
               <Card className="backdrop-blur-sm border border-purple-800/20 card-hover overflow-hidden h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-800/5 via-transparent to-transparent" />
                 <CardHeader className="flex flex-row items-center gap-4 relative z-10">
-                  <div className="bg-dark-purple-gradient p-2 rounded-full text-white">{skill.icon}</div>
+                  <div className="bg-dark-purple-gradient p-2 rounded-full text-white">
+                    {skill.icon}
+                  </div>
                   <CardTitle>{skill.category}</CardTitle>
                 </CardHeader>
                 <CardContent className="relative z-10">
@@ -183,6 +241,5 @@ export function SkillsSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-

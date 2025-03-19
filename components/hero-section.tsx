@@ -5,17 +5,10 @@ import type React from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Github,
-  Linkedin,
-  Twitter,
-  Award,
-  BookOpen,
-  Users,
-} from "lucide-react";
+import { ArrowRight, Award, Users } from "lucide-react";
 import { AnimatedBackground } from "./animated-background";
 import { Spotlight } from "./spotlight";
+import { SocialIcons } from "./social-icons";
 import { useEffect, useState } from "react";
 
 // Component for animated counter
@@ -133,50 +126,9 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-10 flex items-center justify-center gap-6"
+              className="mt-10"
             >
-              <Link
-                href="https://github.com/Unsleeping"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-full hover:bg-purple-800/10 hover:text-purple-500 transition-colors"
-                >
-                  <Github className="h-5 w-5" />
-                  <span className="sr-only">GitHub</span>
-                </Button>
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/alexander-mandrov-584314250/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-full hover:bg-purple-800/10 hover:text-purple-500 transition-colors"
-                >
-                  <Linkedin className="h-5 w-5" />
-                  <span className="sr-only">LinkedIn</span>
-                </Button>
-              </Link>
-              <Link
-                href="https://x.com/endlesslysorrow"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-full hover:bg-purple-800/10 hover:text-purple-500 transition-colors"
-                >
-                  <Twitter className="h-5 w-5" />
-                  <span className="sr-only">Twitter</span>
-                </Button>
-              </Link>
+              <SocialIcons variant="hero" />
             </motion.div>
 
             {/* Stats section with animated counters */}

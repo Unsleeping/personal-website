@@ -1,52 +1,79 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink } from "lucide-react"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ExternalLink } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // Helper component to highlight specific terms
-const HighlightedText = ({ text, termsToHighlight }) => {
+const HighlightedText = ({
+  text,
+  termsToHighlight,
+}: {
+  text: string;
+  termsToHighlight: string[];
+}) => {
   if (!termsToHighlight || termsToHighlight.length === 0) {
-    return <span>{text}</span>
+    return <span>{text}</span>;
   }
 
   // Create a regex pattern from the terms to highlight
-  const pattern = new RegExp(`(${termsToHighlight.join("|")})`, "gi")
+  const pattern = new RegExp(`(${termsToHighlight.join("|")})`, "gi");
 
   // Split the text by the pattern
-  const parts = text.split(pattern)
+  const parts = text.split(pattern);
 
   return (
     <span>
       {parts.map((part, i) => {
         // Check if this part matches any of the terms to highlight
-        const isHighlighted = termsToHighlight.some((term) => part.toLowerCase() === term.toLowerCase())
+        const isHighlighted = termsToHighlight.some(
+          (term) => part.toLowerCase() === term.toLowerCase()
+        );
 
         return isHighlighted ? (
-          <span key={i} className="bg-purple-500/20 px-1 rounded text-purple-700 dark:text-purple-300 font-medium">
+          <span
+            key={i}
+            className="bg-purple-500/20 px-1 rounded text-purple-700 dark:text-purple-300 font-medium"
+          >
             {part}
           </span>
         ) : (
           <span key={i}>{part}</span>
-        )
+        );
       })}
     </span>
-  )
-}
+  );
+};
 
 const projects = [
   {
     title: "Viqeo Video Player",
     description:
       "A sophisticated video player with advanced ad integration capabilities and performance optimizations.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["JavaScript", "TypeScript", "Video", "Ad Integration", "Performance", "OOP", "Core Web Vitals"],
+    image: "/player.jpg",
+    tags: [
+      "JavaScript",
+      "TypeScript",
+      "Video",
+      "Ad Integration",
+      "Performance",
+      "OOP",
+      "Core Web Vitals",
+    ],
     highlights: [
       {
         text: "First non-linear ad integration adapter with seamless compatibility built through mocks and unit testing of worst case scenarios from third-party integrations",
@@ -74,8 +101,16 @@ const projects = [
     title: "Viqeo Ads Admin",
     description:
       "Internal admin panel to manage ad campaigns with complex hierarchical data structures and advanced filtering capabilities.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["React", "TypeScript", "TanStack Query", "TanStack Table", "TanStack Router", "TDD", "Tailwind CSS"],
+    image: "/admin.png",
+    tags: [
+      "React",
+      "TypeScript",
+      "TanStack Query",
+      "TanStack Table",
+      "TanStack Router",
+      "TDD",
+      "Tailwind CSS",
+    ],
     highlights: [
       {
         text: "Complex tree-like hierarchical structures with efficient loading patterns",
@@ -103,8 +138,16 @@ const projects = [
     title: "AgilePoker.ru",
     description:
       "A registration-free planning poker tool designed for Agile teams to estimate story points efficiently.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Next.js", "WebSockets", "SSG", "ISR", "RSC", "Caching", "Server Performance"],
+    image: "/agilepoker.webp",
+    tags: [
+      "Next.js",
+      "WebSockets",
+      "SSG",
+      "ISR",
+      "RSC",
+      "Caching",
+      "Server Performance",
+    ],
     link: "https://agilepoker.ru",
     highlights: [
       {
@@ -137,8 +180,15 @@ const projects = [
     title: "Chesstery",
     description:
       "An educational platform designed for both teachers and students, centered around chess and learning games.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["React", "WebSockets", "Chess Engine", "Interactive Learning", "CMS", "Machine Learning"],
+    image: "/chesstery.jpeg",
+    tags: [
+      "React",
+      "WebSockets",
+      "Chess Engine",
+      "Interactive Learning",
+      "CMS",
+      "Machine Learning",
+    ],
     link: "https://chesstery.com",
     highlights: [
       {
@@ -175,8 +225,15 @@ const projects = [
     title: "AI Integration Solutions",
     description:
       "Various AI wrappers and integrations for text-to-speech, audio processing, and image generation applications.",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Next.js", "AI SDK", "API Integration", "TypeScript", "Serverless", "BFF"],
+    image: "/ai.jpeg",
+    tags: [
+      "Next.js",
+      "AI SDK",
+      "API Integration",
+      "TypeScript",
+      "Serverless",
+      "BFF",
+    ],
     highlights: [
       {
         text: "Smooth AI integrations for text-to-speech applications",
@@ -208,7 +265,7 @@ const projects = [
     title: "Chrome Extensions",
     description:
       "Developed various Chrome extensions for productivity, AI integration, and enhancing web applications.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/extensions.png",
     tags: ["JavaScript", "Chrome API", "React", "AI SDK", "BFF"],
     highlights: [
       {
@@ -233,11 +290,11 @@ const projects = [
       },
     ],
   },
-]
+];
 
 export function ProjectsSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -247,12 +304,12 @@ export function ProjectsSection() {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
@@ -264,7 +321,9 @@ export function ProjectsSection() {
           <div className="inline-block rounded-full bg-purple-800/10 px-3 py-1 text-sm text-purple-500 backdrop-blur-md border border-purple-800/20 mb-4">
             My Work
           </div>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Featured Projects</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Featured Projects
+          </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             A selection of projects I've worked on throughout my career
           </p>
@@ -286,17 +345,26 @@ export function ProjectsSection() {
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className={cn(
+                      "object-cover transition-transform duration-500 group-hover:scale-105",
+                      project.title === "AgilePoker.ru" && "bg-white"
+                    )}
                   />
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-gradient">{project.title}</CardTitle>
+                  <CardTitle className="text-gradient">
+                    {project.title}
+                  </CardTitle>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, i) => (
-                      <Badge key={i} variant="outline" className="border-purple-800/30 bg-purple-800/5">
+                      <Badge
+                        key={i}
+                        variant="outline"
+                        className="border-purple-800/30 bg-purple-800/5"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -305,7 +373,10 @@ export function ProjectsSection() {
                     {project.highlights.map((highlight, i) => (
                       <li key={i} className="flex items-start">
                         <span className="mr-2 text-purple-500">•</span>
-                        <HighlightedText text={highlight.text} termsToHighlight={highlight.highlightTerms} />
+                        <HighlightedText
+                          text={highlight.text}
+                          termsToHighlight={highlight.highlightTerms}
+                        />
                       </li>
                     ))}
                   </ul>
@@ -318,7 +389,11 @@ export function ProjectsSection() {
                       asChild
                       className="mr-2 border-purple-800/30 hover:bg-purple-800/10 hover:border-purple-800/50"
                     >
-                      <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Visit
                       </Link>
@@ -331,6 +406,5 @@ export function ProjectsSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
